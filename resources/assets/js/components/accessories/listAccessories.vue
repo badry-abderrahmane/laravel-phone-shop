@@ -76,7 +76,7 @@
         methods:{
 
             getAccessories(){
-                axios.get('/accessories')
+                axios.get('/admin/accessories')
                     .then(response => {
                         this.accessories = response.data;
                     });
@@ -88,7 +88,7 @@
 
             enableAccessory(accessory){
               accessory.state = !accessory.state;
-              axios.put('/accessories/'+accessory.id, accessory)
+              axios.put('/admin/accessories/'+accessory.id, accessory)
                   .then(data => {
                     this.notify('Accessories management',data.message,'success');
                   })
@@ -101,7 +101,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete accessory')
                     .then(function () {
-                        axios.delete('/accessories/' + accessory.id)
+                        axios.delete('/admin/accessories/' + accessory.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

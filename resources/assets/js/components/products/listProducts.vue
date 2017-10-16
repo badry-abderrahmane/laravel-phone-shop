@@ -79,7 +79,7 @@
         methods:{
 
             getProducts(){
-                axios.get('/products')
+                axios.get('/admin/products')
                     .then(response => {
                         this.products = response.data;
                     });
@@ -91,7 +91,7 @@
 
             enableProduct(product){
               product.state = !product.state;
-              axios.put('/products/'+product.id, product)
+              axios.put('/admin/products/'+product.id, product)
                   .then(data => {
                     this.notify('Products management',data.message,'success');
                   })
@@ -104,7 +104,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete product')
                     .then(function () {
-                        axios.delete('/products/' + product.id)
+                        axios.delete('/admin/products/' + product.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');
@@ -119,7 +119,7 @@
                     })
             },
             editProductOptions(product){
-              window.location.href = '/productoptions/' + this.searchData;
+              window.location.href = '/admin/productoptions/' + this.searchData;
               // Event.$emit('product-options', product);
             },
             resetForm(){

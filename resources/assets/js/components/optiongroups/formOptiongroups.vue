@@ -27,7 +27,7 @@
               <div class="col-md-6">
                   <div v-bind:class="{ 'has-error': form.errors.get('category_id') }">
                       <label>Category</label>
-                      <select class="form-control" name="category_id" v-model="form.category_id">
+                      <select class="form-control" name="category_id" v-model="form.category_id" @change="form.errors.clear('category_id')">
                             <option v-for="category in categories" v-bind:value="category.id"> {{ category.name }}</option>
                       </select>
                       <!-- <input type="text" name="category_id" class="form-control" v-model="form.category_id"/> -->
@@ -84,7 +84,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/optiongroups')
+              this.form.post('/admin/optiongroups')
                 .then(data => {
                   this.refreshList();
                   this.notify('Galleries management',data.message,'success');
@@ -93,7 +93,7 @@
                   this.notify('Galleries management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/optiongroups')
+              this.form.put('/admin/optiongroups')
                 .then(data => {
                   this.refreshList();
                   this.notify('Galleries management',data.message,'success');
@@ -106,7 +106,7 @@
           },
 
           getCategories(){
-            axios.get('/categories')
+            axios.get('/admin/categories')
                 .then(response => {
                     this.categories = response.data;
                 });

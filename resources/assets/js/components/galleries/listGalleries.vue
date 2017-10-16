@@ -74,7 +74,7 @@
         methods:{
 
             getGalleries(){
-                axios.get('/galleries')
+                axios.get('/admin/galleries')
                     .then(response => {
                         this.galleries = response.data;
                     });
@@ -86,7 +86,7 @@
 
             enableGallery(gallery){
               gallery.state = !gallery.state;
-              axios.put('/galleries/'+gallery.id, gallery)
+              axios.put('/admin/galleries/'+gallery.id, gallery)
                   .then(data => {
                     this.notify('Galleries management',data.message,'success');
                   })
@@ -99,7 +99,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete gallery')
                     .then(function () {
-                        axios.delete('/galleries/' + gallery.id)
+                        axios.delete('/admin/galleries/' + gallery.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

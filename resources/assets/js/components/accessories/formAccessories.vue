@@ -38,7 +38,7 @@
               <div class="col-md-6">
                   <div v-bind:class="{ 'has-error': form.errors.get('product_id') }">
                       <label>Product</label>
-                      <select class="form-control" name="product_id" v-model="form.product_id">
+                      <select class="form-control" name="product_id" v-model="form.product_id" @change="form.errors.clear('product_id')">
                             <option v-for="product in products" v-bind:value="product.id"> {{ product.name }}</option>
                       </select>
                       <!-- <input type="text" name="product_id" class="form-control" v-model="form.product_id"/> -->
@@ -48,7 +48,7 @@
               <div class="col-md-6">
                   <div v-bind:class="{ 'has-error': form.errors.get('category_id') }">
                       <label>Category</label>
-                      <select class="form-control" name="category_id" v-model="form.category_id">
+                      <select class="form-control" name="category_id" v-model="form.category_id" @change="form.errors.clear('category_id')">
                             <option v-for="category in categories" v-bind:value="category.id"> {{ category.name }}</option>
                       </select>
                       <!-- <input type="text" name="category_id" class="form-control" v-model="form.category_id"/> -->
@@ -107,7 +107,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/accessories')
+              this.form.post('/admin/accessories')
                 .then(data => {
                   this.refreshList();
                   this.notify('Accessories management',data.message,'success');
@@ -116,7 +116,7 @@
                   this.notify('Accessories management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/accessories')
+              this.form.put('/admin/accessories')
                 .then(data => {
                   this.refreshList();
                   this.notify('Accessories management',data.message,'success');
@@ -129,13 +129,13 @@
           },
 
           getProducts(){
-            axios.get('/products')
+            axios.get('/admin/products')
                 .then(response => {
                     this.products = response.data;
                 });
           },
           getCategories(){
-            axios.get('/categories')
+            axios.get('/admin/categories')
                 .then(response => {
                     this.categories = response.data;
                 });

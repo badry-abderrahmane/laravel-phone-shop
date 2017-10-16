@@ -23,14 +23,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::resource('products', 'ProductController');
-Route::resource('series', 'SerieController');
-Route::resource('galleries', 'GalleryController');
-Route::resource('colors', 'ColorController');
-Route::resource('productcolors', 'ProductcolorController');
-Route::resource('productoptions', 'ProductoptionController');
-Route::resource('categories', 'CategoryController');
-Route::resource('accessories', 'AccessoryController');
-Route::resource('optiongroups', 'OptiongroupController');
-Route::resource('options', 'OptionController');
+// Admin routes
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function()
+{
+  Route::get('/', 'adminController@index');
+  Route::resource('products', 'ProductController');
+  Route::resource('series', 'SerieController');
+  Route::resource('galleries', 'GalleryController');
+  Route::resource('colors', 'ColorController');
+  Route::resource('productcolors', 'ProductcolorController');
+  Route::resource('productoptions', 'ProductoptionController');
+  Route::resource('categories', 'CategoryController');
+  Route::resource('accessories', 'AccessoryController');
+  Route::resource('optiongroups', 'OptiongroupController');
+  Route::resource('options', 'OptionController');
+});

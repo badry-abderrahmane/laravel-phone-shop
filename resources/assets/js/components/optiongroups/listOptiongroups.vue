@@ -72,7 +72,7 @@
         methods:{
 
             getOptiongroups(){
-                axios.get('/optiongroups')
+                axios.get('/admin/optiongroups')
                     .then(response => {
                         this.optiongroups = response.data;
                     });
@@ -84,7 +84,7 @@
 
             enableGallery(optiongroup){
               optiongroup.state = !optiongroup.state;
-              axios.put('/optiongroups/'+optiongroup.id, optiongroup)
+              axios.put('/admin/optiongroups/'+optiongroup.id, optiongroup)
                   .then(data => {
                     this.notify('Option groups management',data.message,'success');
                   })
@@ -97,7 +97,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete optiongroup')
                     .then(function () {
-                        axios.delete('/optiongroups/' + optiongroup.id)
+                        axios.delete('/admin/optiongroups/' + optiongroup.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

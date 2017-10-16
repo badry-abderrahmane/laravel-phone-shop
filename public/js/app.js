@@ -36965,7 +36965,7 @@ module.exports = Vue$3;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(103);
+module.exports = __webpack_require__(97);
 
 
 /***/ }),
@@ -37045,7 +37045,7 @@ Vue.component('galleries-form', __webpack_require__(87));
 Vue.component('optiongroups-list', __webpack_require__(90));
 Vue.component('optiongroups-form', __webpack_require__(93));
 
-Vue.component('pagination', __webpack_require__(102));
+Vue.component('pagination', __webpack_require__(96));
 
 var app = new Vue({
   el: '#app',
@@ -59161,7 +59161,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getSeries: function getSeries() {
             var _this2 = this;
 
-            axios.get('/series').then(function (response) {
+            axios.get('/admin/series').then(function (response) {
                 _this2.series = response.data;
             });
         },
@@ -59172,7 +59172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             serie.state = !serie.state;
-            axios.put('/series/' + serie.id, serie).then(function (data) {
+            axios.put('/admin/series/' + serie.id, serie).then(function (data) {
                 _this3.notify('Series management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Series management', errors.message, 'warn');
@@ -59183,7 +59183,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete serie').then(function () {
                 var _this4 = this;
 
-                axios.delete('/series/' + serie.id).then(function (response) {
+                axios.delete('/admin/series/' + serie.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Series management', 'Serie well deleted.', 'warning');
@@ -59537,14 +59537,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/series').then(function (data) {
+        this.form.post('/admin/series').then(function (data) {
           _this2.refreshList();
           _this2.notify('Series management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Series management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/series').then(function (data) {
+        this.form.put('/admin/series').then(function (data) {
           _this2.refreshList();
           _this2.notify('Series management', data.message, 'success');
         }).catch(function (errors) {
@@ -60020,7 +60020,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getProducts: function getProducts() {
             var _this2 = this;
 
-            axios.get('/products').then(function (response) {
+            axios.get('/admin/products').then(function (response) {
                 _this2.products = response.data;
             });
         },
@@ -60031,7 +60031,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             product.state = !product.state;
-            axios.put('/products/' + product.id, product).then(function (data) {
+            axios.put('/admin/products/' + product.id, product).then(function (data) {
                 _this3.notify('Products management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Products management', errors.message, 'warn');
@@ -60042,7 +60042,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete product').then(function () {
                 var _this4 = this;
 
-                axios.delete('/products/' + product.id).then(function (response) {
+                axios.delete('/admin/products/' + product.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Products management', 'Serie well deleted.', 'warning');
@@ -60054,7 +60054,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         editProductOptions: function editProductOptions(product) {
-            window.location.href = '/productoptions/' + this.searchData;
+            window.location.href = '/admin/productoptions/' + this.searchData;
             // Event.$emit('product-options', product);
         },
         resetForm: function resetForm() {
@@ -60460,14 +60460,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/products').then(function (data) {
+        this.form.post('/admin/products').then(function (data) {
           _this2.refreshList();
           _this2.notify('Products management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Products management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/products').then(function (data) {
+        this.form.put('/admin/products').then(function (data) {
           _this2.refreshList();
           _this2.notify('Products management', data.message, 'success');
         }).catch(function (errors) {
@@ -61491,7 +61491,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getCategories: function getCategories() {
             var _this2 = this;
 
-            axios.get('/categories').then(function (response) {
+            axios.get('/admin/categories').then(function (response) {
                 _this2.categories = response.data;
             });
         },
@@ -61502,7 +61502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             category.state = !category.state;
-            axios.put('/categories/' + category.id, category).then(function (data) {
+            axios.put('/admin/categories/' + category.id, category).then(function (data) {
                 _this3.notify('Categories management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Categories management', errors.message, 'warn');
@@ -61511,7 +61511,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         destroyCategory: function destroyCategory(category) {
             var self = this;
             this.$dialog.confirm('Need your confirmation to delete serie').then(function () {
-                axios.delete('/categories/' + category.id).then(function (response) {
+                axios.delete('/admin/categories/' + category.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     self.notify('Categories management', 'Category well deleted.', 'warn');
@@ -61855,14 +61855,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/categories').then(function (data) {
+        this.form.post('/admin/categories').then(function (data) {
           _this2.refreshList();
           _this2.notify('Categories management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Categories management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/categories').then(function (data) {
+        this.form.put('/admin/categories').then(function (data) {
           _this2.refreshList();
           _this2.notify('Categories management', data.message, 'success');
         }).catch(function (errors) {
@@ -62200,7 +62200,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getOptions: function getOptions() {
             var _this2 = this;
 
-            axios.get('/options').then(function (response) {
+            axios.get('/admin/options').then(function (response) {
                 _this2.options = response.data;
             });
         },
@@ -62211,7 +62211,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             option.state = !option.state;
-            axios.put('/options/' + option.id, option).then(function (data) {
+            axios.put('/admin/options/' + option.id, option).then(function (data) {
                 _this3.notify('Options management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Options management', errors.message, 'warn');
@@ -62222,7 +62222,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete option').then(function () {
                 var _this4 = this;
 
-                axios.delete('/options/' + option.id).then(function (response) {
+                axios.delete('/admin/options/' + option.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Options management', 'Option well deleted.', 'warning');
@@ -62307,13 +62307,13 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", { staticClass: "col-xs-2" }, [
                       _c("span", { staticClass: "label bg-gray" }, [
-                        _vm._v(_vm._s(option.value))
+                        _vm._v(_vm._s(option.name))
                       ])
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "col-xs-1" }, [
                       _c("span", { staticClass: "label bg-green" }, [
-                        _vm._v(_vm._s(option.suboptiongroup.name))
+                        _vm._v(_vm._s(option.optiongroup.name))
                       ])
                     ]),
                     _vm._v(" "),
@@ -62379,7 +62379,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { staticClass: "col-xs-1" }, [_vm._v("#ID")]),
         _vm._v(" "),
-        _c("th", { staticClass: "col-xs-2" }, [_vm._v("Value")]),
+        _c("th", { staticClass: "col-xs-2" }, [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", { staticClass: "col-xs-1" }, [_vm._v("Suboption group")]),
         _vm._v(" "),
@@ -62549,14 +62549,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/options').then(function (data) {
+        this.form.post('/admin/options').then(function (data) {
           _this2.refreshList();
           _this2.notify('Options management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Options management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/options').then(function (data) {
+        this.form.put('/admin/options').then(function (data) {
           _this2.refreshList();
           _this2.notify('Options management', data.message, 'success');
         }).catch(function (errors) {
@@ -62567,7 +62567,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getOptiongroups: function getOptiongroups() {
       var _this3 = this;
 
-      axios.get('/optiongroups').then(function (response) {
+      axios.get('/admin/optiongroups').then(function (response) {
         _this3.optiongroups = response.data;
       });
     },
@@ -62970,7 +62970,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getColors: function getColors() {
             var _this2 = this;
 
-            axios.get('/colors').then(function (response) {
+            axios.get('/admin/colors').then(function (response) {
                 _this2.colors = response.data;
             });
         },
@@ -62981,7 +62981,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             color.state = !color.state;
-            axios.put('/colors/' + color.id, color).then(function (data) {
+            axios.put('/admin/colors/' + color.id, color).then(function (data) {
                 _this3.notify('Colors management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Colors management', errors.message, 'warn');
@@ -62992,7 +62992,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete color').then(function () {
                 var _this4 = this;
 
-                axios.delete('/colors/' + color.id).then(function (response) {
+                axios.delete('/admin/colors/' + color.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Colors management', 'Color well deleted.', 'warning');
@@ -63289,14 +63289,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/colors').then(function (data) {
+        this.form.post('/admin/colors').then(function (data) {
           _this2.refreshList();
           _this2.notify('Colors management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Colors management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/colors').then(function (data) {
+        this.form.put('/admin/colors').then(function (data) {
           _this2.refreshList();
           _this2.notify('Colors management', data.message, 'success');
         }).catch(function (errors) {
@@ -63599,7 +63599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getAccessories: function getAccessories() {
             var _this2 = this;
 
-            axios.get('/accessories').then(function (response) {
+            axios.get('/admin/accessories').then(function (response) {
                 _this2.accessories = response.data;
             });
         },
@@ -63610,7 +63610,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             accessory.state = !accessory.state;
-            axios.put('/accessories/' + accessory.id, accessory).then(function (data) {
+            axios.put('/admin/accessories/' + accessory.id, accessory).then(function (data) {
                 _this3.notify('Accessories management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Accessories management', errors.message, 'warn');
@@ -63621,7 +63621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete accessory').then(function () {
                 var _this4 = this;
 
-                axios.delete('/accessories/' + accessory.id).then(function (response) {
+                axios.delete('/admin/accessories/' + accessory.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Accessories management', 'Accessory well deleted.', 'warning');
@@ -63992,14 +63992,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/accessories').then(function (data) {
+        this.form.post('/admin/accessories').then(function (data) {
           _this2.refreshList();
           _this2.notify('Accessories management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Accessories management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/accessories').then(function (data) {
+        this.form.put('/admin/accessories').then(function (data) {
           _this2.refreshList();
           _this2.notify('Accessories management', data.message, 'success');
         }).catch(function (errors) {
@@ -64010,14 +64010,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getProducts: function getProducts() {
       var _this3 = this;
 
-      axios.get('/products').then(function (response) {
+      axios.get('/admin/products').then(function (response) {
         _this3.products = response.data;
       });
     },
     getCategories: function getCategories() {
       var _this4 = this;
 
-      axios.get('/categories').then(function (response) {
+      axios.get('/admin/categories').then(function (response) {
         _this4.categories = response.data;
       });
     },
@@ -64255,19 +64255,24 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: { name: "product_id" },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.form.product_id = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.form.product_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            _vm.form.errors.clear("product_id")
+                          }
+                        ]
                       }
                     },
                     _vm._l(_vm.products, function(product) {
@@ -64310,19 +64315,24 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: { name: "category_id" },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.form.category_id = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.form.category_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            _vm.form.errors.clear("category_id")
+                          }
+                        ]
                       }
                     },
                     _vm._l(_vm.categories, function(category) {
@@ -64510,7 +64520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getGalleries: function getGalleries() {
             var _this2 = this;
 
-            axios.get('/galleries').then(function (response) {
+            axios.get('/admin/galleries').then(function (response) {
                 _this2.galleries = response.data;
             });
         },
@@ -64521,7 +64531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             gallery.state = !gallery.state;
-            axios.put('/galleries/' + gallery.id, gallery).then(function (data) {
+            axios.put('/admin/galleries/' + gallery.id, gallery).then(function (data) {
                 _this3.notify('Galleries management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Galleries management', errors.message, 'warn');
@@ -64532,7 +64542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete gallery').then(function () {
                 var _this4 = this;
 
-                axios.delete('/galleries/' + gallery.id).then(function (response) {
+                axios.delete('/admin/galleries/' + gallery.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Galleries management', 'Gallery well deleted.', 'warning');
@@ -64883,14 +64893,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/galleries').then(function (data) {
+        this.form.post('/admin/galleries').then(function (data) {
           _this2.refreshList();
           _this2.notify('Galleries management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Galleries management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/galleries').then(function (data) {
+        this.form.put('/admin/galleries').then(function (data) {
           _this2.refreshList();
           _this2.notify('Galleries management', data.message, 'success');
         }).catch(function (errors) {
@@ -65139,19 +65149,24 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: { name: "product_id" },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.form.product_id = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.form.product_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            _vm.form.errors.clear("product_id")
+                          }
+                        ]
                       }
                     },
                     _vm._l(_vm.products, function(product) {
@@ -65333,7 +65348,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getOptiongroups: function getOptiongroups() {
             var _this2 = this;
 
-            axios.get('/optiongroups').then(function (response) {
+            axios.get('/admin/optiongroups').then(function (response) {
                 _this2.optiongroups = response.data;
             });
         },
@@ -65344,7 +65359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             optiongroup.state = !optiongroup.state;
-            axios.put('/optiongroups/' + optiongroup.id, optiongroup).then(function (data) {
+            axios.put('/admin/optiongroups/' + optiongroup.id, optiongroup).then(function (data) {
                 _this3.notify('Option groups management', data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Option groups management', errors.message, 'warn');
@@ -65355,7 +65370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$dialog.confirm('Need your confirmation to delete optiongroup').then(function () {
                 var _this4 = this;
 
-                axios.delete('/optiongroups/' + optiongroup.id).then(function (response) {
+                axios.delete('/admin/optiongroups/' + optiongroup.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
                     _this4.notify('Option groups management', 'Gallery well deleted.', 'warning');
@@ -65689,14 +65704,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       if (this.form.id == '') {
-        this.form.post('/optiongroups').then(function (data) {
+        this.form.post('/admin/optiongroups').then(function (data) {
           _this2.refreshList();
           _this2.notify('Galleries management', data.message, 'success');
         }).catch(function (errors) {
           _this2.notify('Galleries management', errors.message, 'warn');
         });
       } else {
-        this.form.put('/optiongroups').then(function (data) {
+        this.form.put('/admin/optiongroups').then(function (data) {
           _this2.refreshList();
           _this2.notify('Galleries management', data.message, 'success');
         }).catch(function (errors) {
@@ -65707,7 +65722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getCategories: function getCategories() {
       var _this3 = this;
 
-      axios.get('/categories').then(function (response) {
+      axios.get('/admin/categories').then(function (response) {
         _this3.categories = response.data;
       });
     },
@@ -65904,19 +65919,24 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: { name: "category_id" },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.form.category_id = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        }
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.form.category_id = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            _vm.form.errors.clear("category_id")
+                          }
+                        ]
                       }
                     },
                     _vm._l(_vm.categories, function(category) {
@@ -65976,13 +65996,7 @@ if (false) {
 }
 
 /***/ }),
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -66051,7 +66065,7 @@ module.exports = {
 
 
 /***/ }),
-/* 103 */
+/* 97 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

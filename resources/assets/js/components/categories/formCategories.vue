@@ -71,7 +71,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/categories')
+              this.form.post('/admin/categories')
                 .then(data => {
                   this.refreshList();
                   this.notify('Categories management',data.message,'success');
@@ -80,7 +80,7 @@
                   this.notify('Categories management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/categories')
+              this.form.put('/admin/categories')
                 .then(data => {
                   this.refreshList();
                   this.notify('Categories management',data.message,'success');

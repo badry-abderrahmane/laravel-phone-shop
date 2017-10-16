@@ -60,6 +60,7 @@ class OptionController extends Controller
 
         Option::forceCreate([
           'name' => request('name'),
+          'order' => request('order'),
           'desc'  => request('desc'),
           'optiongroup_id'  => request('optiongroup_id'),
         ]);
@@ -110,6 +111,7 @@ class OptionController extends Controller
 
       $option->name = request('name');
       $option->desc = request('desc');
+      $option->order = request('order');
       $option->optiongroup_id = request('optiongroup_id');
 
       $option->save();

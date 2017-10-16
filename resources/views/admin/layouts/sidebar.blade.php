@@ -33,14 +33,14 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
-            <li><a href="/series/create"><i class="fa fa-circle-o text-red"></i>Series</a></li>
-            <li><a href="/categories/create"><i class="fa fa-circle-o text-purple"></i>Categories</a></li>
-            <li><a href="/products/create"><i class="fa fa-circle-o text-blue"></i>Products</a></li>
-            <li><a href="/options/create"><i class="fa fa-circle-o text-green"></i>Options</a></li>
-            <li><a href="/colors/create"><i class="fa fa-circle-o text-yellow"></i>Colors</a></li>
-            <li><a href="/accessories/create"><i class="fa fa-circle-o text-maroon"></i>Accessories</a></li>
-            <li><a href="/galleries/create"><i class="fa fa-circle-o text-teal"></i>Galleries</a></li>
-            <li><a href="/optiongroups/create"><i class="fa fa-circle-o text-orange"></i>Option groups</a></li>
+            <li><a href="/admin/series/create"><i class="fa fa-circle-o text-red"></i>Series</a></li>
+            <li><a href="/admin/categories/create"><i class="fa fa-circle-o text-purple"></i>Categories</a></li>
+            <li><a href="/admin/products/create"><i class="fa fa-circle-o text-blue"></i>Products</a></li>
+            <li><a href="/admin/options/create"><i class="fa fa-circle-o text-green"></i>Options</a></li>
+            <li><a href="/admin/colors/create"><i class="fa fa-circle-o text-yellow"></i>Colors</a></li>
+            <li><a href="/admin/accessories/create"><i class="fa fa-circle-o text-maroon"></i>Accessories</a></li>
+            <li><a href="/admin/galleries/create"><i class="fa fa-circle-o text-teal"></i>Galleries</a></li>
+            <li><a href="/admin/optiongroups/create"><i class="fa fa-circle-o text-orange"></i>Option groups</a></li>
           </ul>
         </li>
       </ul>

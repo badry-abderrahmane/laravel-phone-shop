@@ -86,7 +86,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/options')
+              this.form.post('/admin/options')
                 .then(data => {
                   this.refreshList();
                   this.notify('Options management',data.message,'success');
@@ -95,7 +95,7 @@
                   this.notify('Options management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/options')
+              this.form.put('/admin/options')
                 .then(data => {
                   this.refreshList();
                   this.notify('Options management',data.message,'success');
@@ -108,7 +108,7 @@
           },
 
           getOptiongroups(){
-            axios.get('/optiongroups')
+            axios.get('/admin/optiongroups')
                 .then(response => {
                     this.optiongroups = response.data;
                 });

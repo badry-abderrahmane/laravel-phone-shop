@@ -76,7 +76,7 @@
         methods:{
 
             getSeries(){
-                axios.get('/series')
+                axios.get('/admin/series')
                     .then(response => {
                         this.series = response.data;
                     });
@@ -88,7 +88,7 @@
 
             enableSerie(serie){
               serie.state = !serie.state;
-              axios.put('/series/'+serie.id, serie)
+              axios.put('/admin/series/'+serie.id, serie)
                   .then(data => {
                     this.notify('Series management',data.message,'success');
                   })
@@ -101,7 +101,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete serie')
                     .then(function () {
-                        axios.delete('/series/' + serie.id)
+                        axios.delete('/admin/series/' + serie.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

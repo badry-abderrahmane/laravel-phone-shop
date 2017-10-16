@@ -81,7 +81,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/series')
+              this.form.post('/admin/series')
                 .then(data => {
                   this.refreshList();
                   this.notify('Series management',data.message,'success');
@@ -90,7 +90,7 @@
                   this.notify('Series management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/series')
+              this.form.put('/admin/series')
                 .then(data => {
                   this.refreshList();
                   this.notify('Series management',data.message,'success');

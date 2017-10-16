@@ -74,7 +74,7 @@
         methods:{
 
             getCategories(){
-                axios.get('/categories')
+                axios.get('/admin/categories')
                     .then(response => {
                         this.categories = response.data;
                     });
@@ -86,7 +86,7 @@
 
             enableCategory(category){
               category.state = !category.state;
-              axios.put('/categories/'+category.id, category)
+              axios.put('/admin/categories/'+category.id, category)
                   .then(data => {
                     this.notify('Categories management',data.message,'success');
                   })
@@ -99,7 +99,7 @@
               var self = this;
                 this.$dialog.confirm('Need your confirmation to delete serie')
                     .then(function () {
-                        axios.delete('/categories/' + category.id)
+                        axios.delete('/admin/categories/' + category.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

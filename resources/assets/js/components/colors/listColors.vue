@@ -68,7 +68,7 @@
         methods:{
 
             getColors(){
-                axios.get('/colors')
+                axios.get('/admin/colors')
                     .then(response => {
                         this.colors = response.data;
                     });
@@ -80,7 +80,7 @@
 
             enableColor(color){
               color.state = !color.state;
-              axios.put('/colors/'+color.id, color)
+              axios.put('/admin/colors/'+color.id, color)
                   .then(data => {
                     this.notify('Colors management',data.message,'success');
                   })
@@ -93,7 +93,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete color')
                     .then(function () {
-                        axios.delete('/colors/' + color.id)
+                        axios.delete('/admin/colors/' + color.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

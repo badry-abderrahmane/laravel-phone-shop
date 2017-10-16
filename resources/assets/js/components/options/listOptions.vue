@@ -16,7 +16,7 @@
               <table class="table table-fixed" id="optionsTable">
                   <thead><tr>
                       <th class="col-xs-1">#ID</th>
-                      <th class="col-xs-2">Value</th>
+                      <th class="col-xs-2">Name</th>
                       <th class="col-xs-1">Suboption group</th>
                       <th class="col-xs-2">Description</th>
                       <th class="col-xs-2">Date</th>
@@ -27,8 +27,8 @@
                   <tbody>
                     <tr v-for="option in options">
                         <td class="col-xs-1">{{ option.id }}</td>
-                        <td class="col-xs-2"><span class="label bg-gray">{{ option.value }}</span></td>
-                        <td class="col-xs-1"><span class="label bg-green">{{ option.suboptiongroup.name }}</span></td>
+                        <td class="col-xs-2"><span class="label bg-gray">{{ option.name }}</span></td>
+                        <td class="col-xs-1"><span class="label bg-green">{{ option.optiongroup.name }}</span></td>
                         <td class="col-xs-2">{{ option.desc }}</td>
                         <td class="col-xs-2">{{ option.created_at }}</td>
                         <td class="col-xs-2" style="text-align: center;">
@@ -70,7 +70,7 @@
         methods:{
 
             getOptions(){
-                axios.get('/options')
+                axios.get('/admin/options')
                     .then(response => {
                         this.options = response.data;
                     });
@@ -82,7 +82,7 @@
 
             enableOption(option){
               option.state = !option.state;
-              axios.put('/options/'+option.id, option)
+              axios.put('/admin/options/'+option.id, option)
                   .then(data => {
                     this.notify('Options management',data.message,'success');
                   })
@@ -95,7 +95,7 @@
 
                 this.$dialog.confirm('Need your confirmation to delete option')
                     .then(function () {
-                        axios.delete('/options/' + option.id)
+                        axios.delete('/admin/options/' + option.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');

@@ -62,7 +62,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/colors')
+              this.form.post('/admin/colors')
                 .then(data => {
                   this.refreshList();
                   this.notify('Colors management',data.message,'success');
@@ -71,7 +71,7 @@
                   this.notify('Colors management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/colors')
+              this.form.put('/admin/colors')
                 .then(data => {
                   this.refreshList();
                   this.notify('Colors management',data.message,'success');

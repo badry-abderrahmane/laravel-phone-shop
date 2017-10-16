@@ -35,8 +35,8 @@
 <!-- Site wrapper -->
 <div id="app">
   <div class="wrapper" >
-      @include('layouts.header')
-      @include('layouts.sidebar')
+      @include('admin.layouts.header')
+      @include('admin.layouts.sidebar')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -63,9 +63,9 @@
     <!-- /.content-wrapper -->
 
     {{--  footer  --}}
-        @include('layouts.footer')
+        @include('admin.layouts.footer')
     {{--  sidebar  --}}
-        @include('layouts.controlsidebar')
+        @include('admin.layouts.controlsidebar')
 
 
   </div>

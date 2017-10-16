@@ -110,7 +110,7 @@
 
           onSubmit(){
             if (this.form.id == '') {
-              this.form.post('/products')
+              this.form.post('/admin/products')
                 .then(data => {
                   this.refreshList();
                   this.notify('Products management',data.message,'success');
@@ -119,7 +119,7 @@
                   this.notify('Products management',errors.message,'warn');
                 });
             }else{
-              this.form.put('/products')
+              this.form.put('/admin/products')
                 .then(data => {
                   this.refreshList();
                   this.notify('Products management',data.message,'success');
