@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\QueryException;
+
+use \App\Productcolor;
 
 class ProductcolorController extends Controller
 {
@@ -34,7 +39,21 @@ class ProductcolorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name'  => 'required|min:3|unique:productcolors',
+            'color_id' => 'integer',
+            'product_id' => 'integer',
+        ];
+
+        $this->validate($request,$rules);
+
+        Productcolor::forceCreate([
+          'name' => request('name'),
+          'color_id'  => request('color_id'),
+          'product_id'  => request('product_id'),
+        ]);
+
+        return Response::json(['message' => 'Accessory inserted'], 200);
     }
 
     /**

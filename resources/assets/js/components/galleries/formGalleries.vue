@@ -117,7 +117,7 @@
           },
 
           getProducts(){
-            axios.get('/products')
+            axios.get('/admin/products')
                 .then(response => {
                     this.products = response.data;
                 });

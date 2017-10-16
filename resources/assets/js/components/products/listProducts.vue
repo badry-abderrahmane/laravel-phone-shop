@@ -119,7 +119,7 @@
                     })
             },
             editProductOptions(product){
-              window.location.href = '/admin/productoptions/' + this.searchData;
+              window.location.href = '/admin/productoptions/'+product.id;
               // Event.$emit('product-options', product);
             },
             resetForm(){
