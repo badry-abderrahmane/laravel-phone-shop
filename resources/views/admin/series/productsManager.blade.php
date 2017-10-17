@@ -5,33 +5,32 @@
 @endsection
 
 @section('title')
-  Series<small>Manager</small>
+  Products<small>Manager</small>
 @endsection
 
 @section('content')
-
+    
     @component('components.panel')
       @slot('heading')
-        Series List
+        Products List
       @endslot
       @slot('body')
-        <series-list></series-list>
+        <products-list serieid="{{ $id }}"></products-list>
       @endslot
     @endcomponent
+
 
     @component('components.modal')
       @slot('id')
         modal-form
       @endslot
       @slot('title')
-        Add new serie
+        Add new product
       @endslot
       @slot('body')
-        <series-form></series-form>
+        <products-form serieid="{{ $id }}"></products-form>
       @endslot
     @endcomponent
-
-  
 @endsection
 
 @section('scripts')

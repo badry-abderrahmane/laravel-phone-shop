@@ -18,7 +18,8 @@
                       <th class="col-xs-1">#ID</th>
                       <th class="col-xs-2">Name</th>
                       <th class="col-xs-1">Code</th>
-                      <th class="col-xs-2">Description</th>
+                      <th class="col-xs-1">Description</th>
+                      <th class="col-xs-1">Nbr products</th>
                       <th class="col-xs-1">Order</th>
                       <th class="col-xs-1">State</th>
                       <th class="col-xs-2">Date</th>
@@ -31,14 +32,16 @@
                         <td class="col-xs-1">{{ serie.id }}</td>
                         <td class="col-xs-2">{{ serie.name }}</td>
                         <td class="col-xs-1">{{ serie.code }}</td>
-                        <td class="col-xs-2">{{ serie.desc }}</td>
+                        <td class="col-xs-1">{{ serie.desc }}</td>
+                        <td class="col-xs-1"><span class="label bg-blue">{{ serie.count }}</span></td>
                         <td class="col-xs-1">{{ serie.order }}</td>
                         <td class="col-xs-1">
                           <span v-bind:class="[serie.state ? 'bg-green' : 'bg-red', 'label']" v-text="serie.state ? 'Enabled' : 'Disabled'"></span>
                         </td>
                         <td class="col-xs-2">{{ serie.created_at }}</td>
-                        <td class="col-xs-2" style="text-align: center;">
+                        <td class="col-xs-3" style="text-align: center;">
                             <button class="btn" @click="editSerie(serie)"><i class="fa fa-icon fa-edit"></i></button>
+                            <button class="btn" @click="showProductSeries(serie)"><i class="fa fa-icon fa-list-alt"></i></button>
                             <button class="btn" @click="enableSerie(serie)"><i class="fa fa-icon fa-lock"></i></button>
                             <button class="btn" @click="destroySerie(serie)"><i class="fa fa-icon fa-trash"></i></button>
                         </td>
@@ -115,7 +118,9 @@
                             });
                     })
             },
-
+            showProductSeries(serie){
+              window.location.href = '/admin/series/'+serie.id+'/edit';
+            },
             resetForm(){
               Event.$emit('reset-form');
             },

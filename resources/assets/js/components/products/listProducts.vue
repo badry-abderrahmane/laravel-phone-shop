@@ -58,9 +58,10 @@
 <script>
 
     export default {
-
+        props: ['serieid'],
         data() {
             return {
+                serie: '',
                 products: [],
                 dtHandle:'',
             };
@@ -70,6 +71,10 @@
             Event.$on('refresh-list', (product) => {
                 this.getProducts();
             });
+            // Event.$on('serie-products-list', (serie) => {
+            //     this.serie = serie;
+            //     this.getProducts();
+            // });
         },
 
         mounted() {
@@ -79,10 +84,21 @@
         methods:{
 
             getProducts(){
+              if (this.serieid == null) {
+                console.log(this.serieid);
                 axios.get('/admin/products')
                     .then(response => {
                         this.products = response.data;
                     });
+              }else{
+                console.log(this.serieid);
+                axios.get('/admin/series/'+this.serieid)
+                    .then(response => {
+                      console.log(response.data);
+                        this.products = response.data.products;
+                    });
+              }
+
             },
 
             editProduct(product){

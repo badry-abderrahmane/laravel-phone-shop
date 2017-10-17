@@ -59140,6 +59140,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -59197,6 +59200,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     console.error(err); // This will print any error that was thrown in the previous error handler.
                 });
             });
+        },
+        showProductSeries: function showProductSeries(serie) {
+            window.location.href = '/admin/series/' + serie.id + '/edit';
         },
         resetForm: function resetForm() {
             Event.$emit('reset-form');
@@ -59281,8 +59287,14 @@ var render = function() {
                         _vm._v(_vm._s(serie.code))
                       ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "col-xs-2" }, [
+                      _c("td", { staticClass: "col-xs-1" }, [
                         _vm._v(_vm._s(serie.desc))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "col-xs-1" }, [
+                        _c("span", { staticClass: "label bg-blue" }, [
+                          _vm._v(_vm._s(serie.count))
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("td", { staticClass: "col-xs-1" }, [
@@ -59307,7 +59319,7 @@ var render = function() {
                       _c(
                         "td",
                         {
-                          staticClass: "col-xs-2",
+                          staticClass: "col-xs-3",
                           staticStyle: { "text-align": "center" }
                         },
                         [
@@ -59322,6 +59334,19 @@ var render = function() {
                               }
                             },
                             [_c("i", { staticClass: "fa fa-icon fa-edit" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn",
+                              on: {
+                                click: function($event) {
+                                  _vm.showProductSeries(serie)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-icon fa-list-alt" })]
                           ),
                           _vm._v(" "),
                           _c(
@@ -59376,7 +59401,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "col-xs-1" }, [_vm._v("Code")]),
         _vm._v(" "),
-        _c("th", { staticClass: "col-xs-2" }, [_vm._v("Description")]),
+        _c("th", { staticClass: "col-xs-1" }, [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "col-xs-1" }, [_vm._v("Nbr products")]),
         _vm._v(" "),
         _c("th", { staticClass: "col-xs-1" }, [_vm._v("Order")]),
         _vm._v(" "),
@@ -60002,8 +60029,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['serieid'],
     data: function data() {
         return {
+            serie: '',
             products: [],
             dtHandle: ''
         };
@@ -60014,6 +60043,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Event.$on('refresh-list', function (product) {
             _this.getProducts();
         });
+        // Event.$on('serie-products-list', (serie) => {
+        //     this.serie = serie;
+        //     this.getProducts();
+        // });
     },
     mounted: function mounted() {
         this.getProducts();
@@ -60024,9 +60057,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getProducts: function getProducts() {
             var _this2 = this;
 
-            axios.get('/admin/products').then(function (response) {
-                _this2.products = response.data;
-            });
+            if (this.serieid == null) {
+                console.log(this.serieid);
+                axios.get('/admin/products').then(function (response) {
+                    _this2.products = response.data;
+                });
+            } else {
+                console.log(this.serieid);
+                axios.get('/admin/series/' + this.serieid).then(function (response) {
+                    console.log(response.data);
+                    _this2.products = response.data.products;
+                });
+            }
         },
         editProduct: function editProduct(product) {
             Event.$emit('edit-product', product);
@@ -62742,7 +62784,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "col-xs-2" }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "col-xs-1" }, [_vm._v("Suboption group")]),
+        _c("th", { staticClass: "col-xs-1" }, [_vm._v("Option group")]),
         _vm._v(" "),
         _c("th", { staticClass: "col-xs-2" }, [_vm._v("Description")]),
         _vm._v(" "),

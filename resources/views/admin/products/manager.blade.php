@@ -10,14 +10,14 @@
 
 @section('content')
 
-        @component('components.panel')
-          @slot('heading')
-            Products List
-          @endslot
-          @slot('body')
-            <products-list></products-list>
-          @endslot
-        @endcomponent
+    @component('components.panel')
+      @slot('heading')
+        Products List
+      @endslot
+      @slot('body')
+        <products-list></products-list>
+      @endslot
+    @endcomponent
 
 
     @component('components.modal')
@@ -32,7 +32,7 @@
       @endslot
     @endcomponent
 
-    @component('components.modal')
+    {{-- @component('components.modal')
       @slot('id')
         modal-product-options
       @endslot
@@ -42,7 +42,7 @@
       @slot('body')
         <product-options></product-options>
       @endslot
-    @endcomponent
+    @endcomponent --}}
 @endsection
 
 @section('scripts')

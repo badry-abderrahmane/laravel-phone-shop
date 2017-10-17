@@ -27,6 +27,11 @@ class SerieController extends Controller
     public function index()
     {
         $series = Serie::All();
+
+        $series->each(function($item,$key){
+            $item->count = $item->products->count();
+        });
+
         return Response::json($series, 200);
     }
 
@@ -76,7 +81,13 @@ class SerieController extends Controller
      */
     public function show($id)
     {
-        //
+        $serie = Serie::findOrFail($id);
+        $serie->count = $serie->products->count();
+        $serie->products->each(function($item,$key){
+          $item->category;
+          $item->serie;
+        });
+        return Response::json($serie, 200);
     }
 
     /**
@@ -87,7 +98,7 @@ class SerieController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.series.productsManager',['id' => $id]);
     }
 
     /**

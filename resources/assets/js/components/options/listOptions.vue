@@ -17,7 +17,7 @@
                   <thead><tr>
                       <th class="col-xs-1">#ID</th>
                       <th class="col-xs-2">Name</th>
-                      <th class="col-xs-1">Suboption group</th>
+                      <th class="col-xs-1">Option group</th>
                       <th class="col-xs-2">Description</th>
                       <th class="col-xs-2">Date</th>
                       <th class="col-xs-2" style="text-align: center;">action</th>
