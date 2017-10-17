@@ -33,9 +33,11 @@ Vue.component('series-form', require('./components/series/formSeries.vue'));
 */
 Vue.component('products-list', require('./components/products/listProducts.vue'));
 Vue.component('products-form', require('./components/products/formProducts.vue'));
+Vue.component('product-infos', require('./components/products/productInfos.vue'));
 Vue.component('product-options', require('./components/products/productOptions.vue'));
 Vue.component('product-colors', require('./components/products/productColors.vue'));
 Vue.component('product-color-form', require('./components/products/productColorForm.vue'));
+Vue.component('product-option-form', require('./components/products/productOptionForm.vue'));
 /**
 *  Categories components
 */

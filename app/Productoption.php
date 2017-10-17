@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Productoption extends Model
 {
-    
+
     protected $fillable = [
         'value', 'desc','tags','product_id','option_id'
     ];
@@ -19,4 +19,4 @@ class Productoption extends Model
         return $this->belongsTo('App\Option');
     }
 
-}   
+}

@@ -21,8 +21,12 @@
                   </div>
               </div>
               <div class="col-md-4">
-                  <label>.</label>
-                  <button type="submit" class="btn btn-success btn-block" :disabled="form.errors.any()">ADD NEW</button>
+                  <label>&nbsp;</label>
+                  <button type="submit"
+                            v-bind:class="[editing ? 'btn-warning' : 'btn-success', 'btn btn-block']"
+                            :disabled="form.errors.any()" v-bind:text="productid">
+                            {{ editing ? 'Update' : 'Add' }}
+                  </button>
               </div>
           </div>
       </form>
@@ -36,7 +40,7 @@
     import { Form } from '../../api/form.js';
 
     export default {
-        props: ['id'],
+        props: ['productid'],
 
         data(){
           return{
@@ -46,14 +50,16 @@
               name: '',
               color_id: '',
               product_id: ''
-            })
+            }),
+            editing: false
           }
         },
 
         watch: {
             form: {
                 handler: function(newValue) {
-                    this.form.product_id = this.id;
+                    this.form.product_id = this.productid;
+                    this.form.errors.clear('product_id');
                 },
                 deep: true
             }
@@ -61,12 +67,14 @@
 
         created(){
           this.getColors();
-          Event.$on('edit-color', (color) => {
-            this.form.load(color);
+          Event.$on('edit-product-color', (productcolor) => {
+            this.form.load(productcolor);
+            this.editing = true;
           });
 
           Event.$on('reset-form-color', () => {
             this.form.reset();
+            this.editing = false;
           });
         },
 
@@ -78,24 +86,24 @@
                 });
           },
           onSubmit(){
+            let self = this;
             if (this.form.id == '') {
-              let self = this;
               this.form.post('/admin/productcolors')
                 .then(data => {
-                  this.refreshList();
-                  this.notify('Products management',data.message,'success');
+                  self.refreshList();
+                  self.notify('Products management',data.message,'success');
                 })
                 .catch(errors =>{
-                  this.notify('Products management',errors.message,'warn');
+                  self.notify('Products management',errors.message,'warn');
                 });
             }else{
               this.form.put('/admin/productcolors')
                 .then(data => {
-                  this.refreshList();
-                  this.notify('Products management',data.message,'success');
+                  self.refreshList();
+                  self.notify('Products management',data.message,'success');
                 })
                 .catch(errors => {
-                  this.notify('Products management',errors.message,'warn');
+                  self.notify('Products management',errors.message,'warn');
                 });
             }
 
@@ -103,12 +111,11 @@
 
           refreshList(){
               Event.$emit('refresh-productcolors-list');
-              this.quitModal();
           },
 
           notify(title,message,type){
             this.$notify({
-              group: 'foo',
+              group: 'colors',
               type: type,
               title: title,
               text: message,

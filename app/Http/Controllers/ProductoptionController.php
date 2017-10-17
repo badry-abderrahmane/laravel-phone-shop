@@ -10,6 +10,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use \App\Product;
+use \App\Productoption;
 
 class ProductoptionController extends Controller
 {
@@ -54,7 +55,21 @@ class ProductoptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'value'  => 'required|min:2',
+            'option_id' => 'integer',
+            'product_id' => 'integer',
+        ];
+
+        $this->validate($request,$rules);
+
+        Productoption::forceCreate([
+          'value' => request('value'),
+          'option_id'  => request('option_id'),
+          'product_id'  => request('product_id'),
+        ]);
+
+        return Response::json(['message' => 'Product option inserted'], 200);
     }
 
     /**
@@ -65,19 +80,8 @@ class ProductoptionController extends Controller
      */
     public function show($id)
     {
-        $relations = ['category', 'serie','accessories','galleries'];
-        try {
-            $product = Product::with($relations)->where('id',$id)->first();
-            $product->productoptions->each(function($item,$key){
-              $item->option->optiongroup;
-            });
-            $product->productcolors->each(function($item,$key){
-              $item->color;
-            });
-            return view('admin.productoptions.manager',['product' => $product]);
-        } catch(ModelNotFoundException $e) {
-            return Redirect::action('ProductController@create');
-        }
+        return view('admin.productoptions.manager',['product_id' => $id]);
+
     }
 
     /**
@@ -88,7 +92,15 @@ class ProductoptionController extends Controller
      */
     public function edit($id)
     {
-        //
+      try {
+          $product = Product::where('id',$id)->first();
+          $product->productoptions->each(function($item,$key){
+            $item->option->optiongroup;
+          });
+          return Response::json($product->productoptions, 200);
+      } catch(QueryException $e) {
+          return Response::json($e);
+      }
     }
 
     /**
@@ -100,7 +112,23 @@ class ProductoptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $rules = [
+          'value'  => 'required|min:2',
+          'option_id' => 'integer',
+          'product_id' => 'integer',
+      ];
+
+      $this->validate($request,$rules);
+
+      $productoption = Productoption::findOrFail($id);
+
+      $productoption->value = request('value');
+      $productoption->option_id = request('option_id');
+      $productoption->product_id = request('product_id');
+
+      $productoption->save();
+
+      return Response::json(['message' => 'Product option well updated!'], 200);
     }
 
     /**
@@ -111,6 +139,7 @@ class ProductoptionController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $var = Productoption::destroy($id);
+      return Response::json($var, 200);
     }
 }

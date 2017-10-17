@@ -131,7 +131,7 @@
             },
             notify(title,message,type){
               this.$notify({
-                group: 'foo',
+                group: 'colors',
                 type: type,
                 title: title,
                 text: message,

@@ -9,7 +9,23 @@
 @endsection
 
 @section('content')
+  <div class="row">
+    <div class="col-md-12">
       @component('components.panel')
+        @slot('heading')
+          General informations
+        @endslot
+        @slot('body')
+          <div class="row">
+            <div class="col-md-12">
+              <product-infos productid="{{ $product_id }}"></product-infos>
+            </div>
+          </div>
+        @endslot
+      @endcomponent
+    </div>
+  </div>
+      {{-- @component('components.panel')
         @slot('heading')
           General informations
         @endslot
@@ -56,7 +72,7 @@
           </div>
 
         @endslot
-      @endcomponent
+      @endcomponent --}}
       <div class="row">
         <div class="col-md-6">
           @component('components.panel')
@@ -66,7 +82,7 @@
             @slot('body')
               <div class="row">
                 <div class="col-md-12">
-                  <product-options productoptions="{{ $product->productoptions }}"></product-options>
+                  <product-options productid="{{ $product_id }}"></product-options>
                 </div>
               </div>
             @endslot
@@ -80,7 +96,7 @@
             @slot('body')
               <div class="row">
                 <div class="col-md-12">
-                  <product-colors productcolors="{{ $product->productcolors }}" id="{{ $product->id }}"></product-colors>
+                  <product-colors productid="{{ $product_id }}"></product-colors>
                 </div>
               </div>
             @endslot

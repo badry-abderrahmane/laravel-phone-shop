@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 
+use \App\Product;
 use \App\Productcolor;
 
 class ProductcolorController extends Controller
@@ -53,7 +54,7 @@ class ProductcolorController extends Controller
           'product_id'  => request('product_id'),
         ]);
 
-        return Response::json(['message' => 'Accessory inserted'], 200);
+        return Response::json(['message' => 'Product color inserted'], 200);
     }
 
     /**
@@ -75,7 +76,15 @@ class ProductcolorController extends Controller
      */
     public function edit($id)
     {
-        //
+      try {
+          $product = Product::where('id',$id)->first();
+          $product->productcolors->each(function($item,$key){
+            $item->color;
+          });
+          return Response::json($product->productcolors, 200);
+      } catch(QueryException $e) {
+          return Response::json($e);
+      }
     }
 
     /**
@@ -87,7 +96,23 @@ class ProductcolorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name'  => 'required|min:3|unique:productcolors,name,'. $request->id,
+            'color_id' => 'integer',
+            'product_id' => 'integer',
+        ];
+
+        $this->validate($request,$rules);
+
+        $productcolor = Productcolor::findOrFail($id);
+
+        $productcolor->name = request('name');
+        $productcolor->color_id = request('color_id');
+        $productcolor->product_id = request('product_id');
+
+        $productcolor->save();
+
+        return Response::json(['message' => 'Product color well updated!'], 200);
     }
 
     /**
@@ -98,6 +123,7 @@ class ProductcolorController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $var = Productcolor::destroy($id);
+      return Response::json($var, 200);
     }
 }

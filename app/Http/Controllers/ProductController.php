@@ -93,7 +93,14 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+      $product = Product::findOrFail($id);
+
+      $product->category;
+      $product->serie;
+      $product->productcolors;
+      $product->productoptions;
+
+      return Response::json($product, 200);
     }
 
     /**
