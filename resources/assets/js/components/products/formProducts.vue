@@ -2,7 +2,7 @@
   <div>
     <notifications group="products" />
     <part-modal id="modal-form">
-      <h4 class="modal-title" slot="title">{{ editing ? 'Edit serie' : 'Add new serie'}}</h4>
+      <h4 class="modal-title" slot="title">{{ editing ? 'Edit product' : 'Add new product'}}</h4>
       <div  slot="body">
         <form v-on:submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
             <div class="row">

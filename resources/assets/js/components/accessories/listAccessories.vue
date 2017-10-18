@@ -26,7 +26,6 @@
                           <th class="col-xs-2">Name</th>
                           <th class="col-xs-1">Link</th>
                           <th class="col-xs-1">Images</th>
-                          <th class="col-xs-1">Product</th>
                           <th class="col-xs-1">Category</th>
                           <th class="col-xs-2">Description</th>
                           <th class="col-xs-2">Date</th>
@@ -40,7 +39,6 @@
                             <td class="col-xs-2"><span class="label bg-gray">{{ accessory.name }}</span></td>
                             <td class="col-xs-1">{{ accessory.link }}</td>
                             <td class="col-xs-1">{{ accessory.imgs }}</td>
-                            <td class="col-xs-1"><span class="label bg-green">{{ accessory.product.name }}</span></td>
                             <td class="col-xs-1"><span class="label bg-green">{{ accessory.category.name }}</span></td>
                             <td class="col-xs-2">{{ accessory.desc }}</td>
                             <td class="col-xs-2">{{ accessory.created_at }}</td>

@@ -37,17 +37,6 @@
                         <span class="help-block" v-if="form.errors.has('desc')" v-text="form.errors.get('desc')"></span>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div v-bind:class="{ 'has-error': form.errors.get('product_id') }">
-                        <label>Product</label>
-                        <select class="form-control" name="product_id" v-model="form.product_id" @change="form.errors.clear('product_id')">
-                              <option v-for="product in products" v-bind:value="product.id"> {{ product.name }}</option>
-                        </select>
-                        <!-- <input type="text" name="product_id" class="form-control" v-model="form.product_id"/> -->
-                        <span class="help-block" v-if="form.errors.has('product_id')" v-text="form.errors.get('product_id')"></span>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div v-bind:class="{ 'has-error': form.errors.get('category_id') }">
                         <label>Category</label>
@@ -94,13 +83,11 @@
               product_id: '',
               category_id: ''
             }),
-            products:[],
             categories:[]
           }
         },
 
         created(){
-          this.getProducts();
           this.getCategories();
 
           Event.$on('edit-accessory', (accessory) => {
@@ -141,12 +128,6 @@
 
           },
 
-          getProducts(){
-            axios.get('/admin/products')
-                .then(response => {
-                    this.products = response.data;
-                });
-          },
           getCategories(){
             axios.get('/admin/categories')
                 .then(response => {

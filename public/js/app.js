@@ -36989,10 +36989,12 @@ __webpack_require__(17);
 
 
 
-
+// import ModalDialogs from 'vue-modal-dialogs'
+// import MessageComponent from './parts/messageDialog.vue'
 // Tell Vue to install the plugin.
 window.Vue = __webpack_require__(14);
 
+// Vue.use(ModalDialogs)
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuejs_dialog___default.a);
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_notification___default.a);
 /**
@@ -59199,20 +59201,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             serie.state = !serie.state;
             axios.put('/admin/series/' + serie.id, serie).then(function (data) {
-                _this3.notify('Series management', data.message, 'success');
+                _this3.notify('Series management', data.data.message, 'success');
             }).catch(function (errors) {
                 _this3.notify('Series management', errors.message, 'warn');
             });
         },
         destroySerie: function destroySerie(serie) {
-
-            this.$dialog.confirm('Need your confirmation to delete serie').then(function () {
-                var _this4 = this;
-
+            var self = this;
+            this.$dialog.confirm('By deleting \"' + serie.name + '\" you will delete ' + serie.count + ' associated products.').then(function () {
                 axios.delete('/admin/series/' + serie.id).then(function (response) {
                     console.log(response.data);
                     Event.$emit('refresh-list');
-                    _this4.notify('Series management', 'Serie well deleted.', 'warning');
+                    self.notify('Series management', response.data.message, 'warn');
                 }, function (err) {
                     console.log("Err", err);
                 }).catch(function (err) {
@@ -60258,11 +60258,11 @@ var render = function() {
       _vm._v(" "),
       _c("part-tooltip"),
       _vm._v(" "),
-      _c("products-form"),
+      _c("products-form", { attrs: { serieid: "serieid" } }),
       _vm._v(" "),
       _c("part-panel", [
         _c("p", { attrs: { slot: "heading" }, slot: "heading" }, [
-          _vm._v("Series List")
+          _vm._v("Products List")
         ]),
         _vm._v(" "),
         _c("div", { attrs: { slot: "body" }, slot: "body" }, [
@@ -60768,7 +60768,7 @@ var render = function() {
             attrs: { slot: "title" },
             slot: "title"
           },
-          [_vm._v(_vm._s(_vm.editing ? "Edit serie" : "Add new serie"))]
+          [_vm._v(_vm._s(_vm.editing ? "Edit product" : "Add new product"))]
         ),
         _vm._v(" "),
         _c("div", { attrs: { slot: "body" }, slot: "body" }, [
@@ -62754,6 +62754,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62795,6 +62798,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (errors) {
                 _this3.notify('Categories management', errors.message, 'warn');
             });
+        },
+        showCategoryProducts: function showCategoryProducts(category) {
+            window.location.href = '/admin/categories/' + category.id + '/edit';
         },
         destroyCategory: function destroyCategory(category) {
             var self = this;
@@ -62897,6 +62903,10 @@ var render = function() {
                         _vm._v("Description")
                       ]),
                       _vm._v(" "),
+                      _c("th", { staticClass: "col-xs-1" }, [
+                        _vm._v("Nb. Products")
+                      ]),
+                      _vm._v(" "),
                       _c("th", { staticClass: "col-xs-1" }, [_vm._v("Order")]),
                       _vm._v(" "),
                       _c("th", { staticClass: "col-xs-1" }, [_vm._v("State")]),
@@ -62931,6 +62941,12 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", { staticClass: "col-xs-2" }, [
                             _vm._v(_vm._s(category.desc))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "col-xs-1" }, [
+                            _c("span", { staticClass: "label bg-blue" }, [
+                              _vm._v(_vm._s(category.count))
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "col-xs-1" }, [
@@ -62977,6 +62993,27 @@ var render = function() {
                                   }
                                 },
                                 [_c("i", { staticClass: "fa fa-icon fa-edit" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn",
+                                  attrs: {
+                                    "data-toggle": "tooltip",
+                                    title: "Show products of this category"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showCategoryProducts(category)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-icon fa-list-alt"
+                                  })
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -65082,8 +65119,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -65230,10 +65265,6 @@ var render = function() {
                       _c("th", { staticClass: "col-xs-1" }, [_vm._v("Images")]),
                       _vm._v(" "),
                       _c("th", { staticClass: "col-xs-1" }, [
-                        _vm._v("Product")
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "col-xs-1" }, [
                         _vm._v("Category")
                       ]),
                       _vm._v(" "),
@@ -65274,12 +65305,6 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", { staticClass: "col-xs-1" }, [
                           _vm._v(_vm._s(accessory.imgs))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "col-xs-1" }, [
-                          _c("span", { staticClass: "label bg-green" }, [
-                            _vm._v(_vm._s(accessory.product.name))
-                          ])
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "col-xs-1" }, [
@@ -65482,17 +65507,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -65510,14 +65524,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         product_id: '',
         category_id: ''
       }),
-      products: [],
       categories: []
     };
   },
   created: function created() {
     var _this = this;
 
-    this.getProducts();
     this.getCategories();
 
     Event.$on('edit-accessory', function (accessory) {
@@ -65554,18 +65566,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       }
     },
-    getProducts: function getProducts() {
+    getCategories: function getCategories() {
       var _this3 = this;
 
-      axios.get('/admin/products').then(function (response) {
-        _this3.products = response.data;
-      });
-    },
-    getCategories: function getCategories() {
-      var _this4 = this;
-
       axios.get('/admin/categories').then(function (response) {
-        _this4.categories = response.data;
+        _this3.categories = response.data;
       });
     },
     refreshList: function refreshList() {
@@ -65786,72 +65791,6 @@ var render = function() {
                             staticClass: "help-block",
                             domProps: {
                               textContent: _vm._s(_vm.form.errors.get("desc"))
-                            }
-                          })
-                        : _vm._e()
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      class: { "has-error": _vm.form.errors.get("product_id") }
-                    },
-                    [
-                      _c("label", [_vm._v("Product")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.product_id,
-                              expression: "form.product_id"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { name: "product_id" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.form.product_id = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              function($event) {
-                                _vm.form.errors.clear("product_id")
-                              }
-                            ]
-                          }
-                        },
-                        _vm._l(_vm.products, function(product) {
-                          return _c(
-                            "option",
-                            { domProps: { value: product.id } },
-                            [_vm._v(" " + _vm._s(product.name))]
-                          )
-                        })
-                      ),
-                      _vm._v(" "),
-                      _vm.form.errors.has("product_id")
-                        ? _c("span", {
-                            staticClass: "help-block",
-                            domProps: {
-                              textContent: _vm._s(
-                                _vm.form.errors.get("product_id")
-                              )
                             }
                           })
                         : _vm._e()

@@ -1,14 +1,36 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+// @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
-@import "variables";
+// @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-
+body{
+  font-family: "Noto Sans",sans-serif !important;
+}
 .scroll-me{
   height:150px;overflow-y: scroll;
+}
+
+.dg-btn {
+  .dg-btn--ok {
+    color: #dd4b39 !important;
+    background-color: #dd4b39 !important;
+  }
+}
+
+.dg-btn.dg-btn--ok {
+  border-color: #dd4b39 !important;
+  color: #dd4b39 !important;
+}
+
+.dg-btn.dg-btn--cancel {
+  background-color: #dd4b39 !important;
+}
+
+.dg-content {
+  font-weight: bold;
 }

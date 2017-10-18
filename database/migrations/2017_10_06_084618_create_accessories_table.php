@@ -20,13 +20,10 @@ class CreateAccessoriesTable extends Migration
             $table->string('imgs')->nullable();
             $table->string('desc')->nullable()->default('No description.');
             $table->string('tags')->nullable()->default('No tags.');
-            $table->integer('product_id')->nullable()->unsigned();
             $table->integer('category_id')->nullable()->unsigned();
             $table->timestamps();
 
-            $table->foreign('product_id')
-                    ->references('id')->on('products')
-                      ->onDelete('cascade');
+            
             $table->foreign('category_id')
                       ->references('id')->on('categories')
                         ->onDelete('cascade');

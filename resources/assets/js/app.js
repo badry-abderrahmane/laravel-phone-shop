@@ -9,10 +9,12 @@ require('./bootstrap');
 
 import VuejsDialog from "vuejs-dialog";
 import Notifications from 'vue-notification'
-
+// import ModalDialogs from 'vue-modal-dialogs'
+// import MessageComponent from './parts/messageDialog.vue'
 // Tell Vue to install the plugin.
 window.Vue = require('vue');
 
+// Vue.use(ModalDialogs)
 Vue.use(VuejsDialog);
 Vue.use(Notifications);
 /**
@@ -77,7 +79,9 @@ Vue.component('part-tooltip', require('./parts/tooltip.vue'));
 Vue.component('part-modal', require('./parts/modal.vue'));
 Vue.component('part-panel', require('./parts/panel.vue'));
 
+
 Vue.component('pagination', require('laravel-vue-pagination'));
+
 
 
 

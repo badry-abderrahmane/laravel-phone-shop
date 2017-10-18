@@ -15,12 +15,10 @@ class Accessory extends Model
         'name', 'link', 'imgs','desc','tags','product_id','category_id',
     ];
 
-   
+
     public function category(){
         return $this->belongsTo('App\Category');
     }
 
-    public function product(){
-        return $this->belongsTo('App\Product');
-    }
+    
 }

@@ -140,6 +140,6 @@ class SerieController extends Controller
     public function destroy($id)
     {
         $var = Serie::destroy($id);
-        return Response::json($var, 200);
+        return Response::json(['message' => 'Serie well deleted!'], 200);
     }
 }

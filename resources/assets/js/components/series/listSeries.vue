@@ -105,7 +105,7 @@
               serie.state = !serie.state;
               axios.put('/admin/series/'+serie.id, serie)
                   .then(data => {
-                    this.notify('Series management',data.message,'success');
+                    this.notify('Series management',data.data.message,'success');
                   })
                   .catch(errors =>{
                     this.notify('Series management',errors.message,'warn');
@@ -113,14 +113,14 @@
             },
 
             destroySerie(serie) {
-
-                this.$dialog.confirm('Need your confirmation to delete serie')
+              let self = this;
+                this.$dialog.confirm('By deleting \"'+serie.name+'\" you will delete '+serie.count+' associated products.')
                     .then(function () {
                         axios.delete('/admin/series/' + serie.id)
                             .then(response => {
                                     console.log(response.data);
                                     Event.$emit('refresh-list');
-                                    this.notify('Series management','Serie well deleted.','warning');
+                                    self.notify('Series management',response.data.message,'warn');
                                 },
                                 (err) => {
                                     console.log("Err", err);

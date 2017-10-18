@@ -26,7 +26,6 @@ class AccessoryController extends Controller
     {
         $accessories = Accessory::All();
         $accessories = $accessories->each(function($item,$key){
-          $item->product;
           $item->category;
         });
         return Response::json($accessories, 200);
@@ -52,7 +51,6 @@ class AccessoryController extends Controller
     {
       $rules = [
           'name'  => 'required|min:3|unique:accessories',
-          'product_id' => 'integer',
           'category_id' => 'integer',
       ];
 
@@ -63,7 +61,6 @@ class AccessoryController extends Controller
         'link'  => request('link'),
         'imgs'  => request('imgs'),
         'desc'  => request('desc'),
-        'product_id'  => request('product_id'),
         'category_id' => request('category_id')
       ]);
 
@@ -103,7 +100,6 @@ class AccessoryController extends Controller
     {
       $rules = [
           'name'  => 'required|min:3|unique:accessories,name,'. $request->id,
-          'product_id' => 'integer',
           'category_id' => 'integer',
       ];
 
@@ -115,7 +111,6 @@ class AccessoryController extends Controller
       $accessory->link = request('link');
       $accessory->imgs = request('imgs');
       $accessory->desc = request('desc');
-      $accessory->product_id = request('product_id');
       $accessory->category_id = request('category_id');
 
       $accessory->save();

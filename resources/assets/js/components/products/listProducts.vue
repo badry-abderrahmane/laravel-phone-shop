@@ -3,10 +3,10 @@
       <notifications group="foo" />
       <part-tooltip></part-tooltip>
 
-      <products-form></products-form>
+      <products-form serieid="serieid"></products-form>
 
       <part-panel>
-        <p slot="heading">Series List</p>
+        <p slot="heading">Products List</p>
         <div slot="body">
           <div class="row">
             <div class="col-md-4">

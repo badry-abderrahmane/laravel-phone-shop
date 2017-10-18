@@ -31,6 +31,9 @@ class CategoryController extends Controller
     public function index()
     {
       $categories = Category::All();
+      $categories->each(function($item,$key){
+          $item->count = $item->products->count();
+      });
       return Response::json($categories, 200);
     }
 
@@ -88,7 +91,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.categories.productsManager',['id' => $id]);
     }
 
     /**

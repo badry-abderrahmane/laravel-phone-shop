@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <products-list serieid="{{ $id }}"></products-list>
+    <products-list categoryid="{{ $id }}"></products-list>
 @endsection
 
 @section('scripts')

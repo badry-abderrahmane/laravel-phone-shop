@@ -25,6 +25,7 @@
                           <th class="col-xs-1">#ID</th>
                           <th class="col-xs-2">Name</th>
                           <th class="col-xs-2">Description</th>
+                          <th class="col-xs-1">Nb. Products</th>
                           <th class="col-xs-1">Order</th>
                           <th class="col-xs-1">State</th>
                           <th class="col-xs-2">Date</th>
@@ -37,6 +38,7 @@
                             <td class="col-xs-1">{{ category.id }}</td>
                             <td class="col-xs-2">{{ category.name }}</td>
                             <td class="col-xs-2">{{ category.desc }}</td>
+                            <td class="col-xs-1"><span class="label bg-blue">{{ category.count }}</span></td>
                             <td class="col-xs-1">{{ category.order }}</td>
                             <td class="col-xs-1">
                               <span v-bind:class="[category.state ? 'bg-green' : 'bg-red', 'label']" v-text="category.state ? 'Enabled' : 'Disabled'"></span>
@@ -44,6 +46,7 @@
                             <td class="col-xs-2">{{ category.created_at }}</td>
                             <td class="col-xs-2" style="text-align: center;">
                                 <button class="btn" @click="editCategory(category)" data-toggle="tooltip" title="Edit category"><i class="fa fa-icon fa-edit"></i></button>
+                                <button class="btn" @click="showCategoryProducts(category)" data-toggle="tooltip" title="Show products of this category"><i class="fa fa-icon fa-list-alt"></i></button>
                                 <button class="btn" @click="enableCategory(category)" v-bind:title="[category.state ? 'Enable category' : 'Disable category']"  data-toggle="tooltip">
                                   <i v-bind:class="[category.state ? 'fa-unlock' : 'fa-lock', 'fa fa-icon']"></i>
                                 </button>
@@ -105,6 +108,10 @@
                   .catch(errors =>{
                     this.notify('Categories management',errors.message,'warn');
                   });
+            },
+
+            showCategoryProducts(category){
+              window.location.href = '/admin/categories/'+category.id+'/edit';
             },
 
             destroyCategory(category) {

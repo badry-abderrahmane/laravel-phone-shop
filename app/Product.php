@@ -23,15 +23,15 @@ class Product extends Model
         return $this->hasMany('App\Gallery');
     }
 
-    public function accessories(){
-        return $this->hasMany('App\Accessory');
-    }
-
     public function productoptions(){
         return $this->hasMany('App\Productoption');
     }
 
     public function productcolors(){
         return $this->hasMany('App\Productcolor');
+    }
+
+    public function productaccessories(){
+        return $this->hasMany('App\Productaccessory');
     }
 }
