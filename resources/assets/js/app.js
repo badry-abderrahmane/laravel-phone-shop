@@ -70,6 +70,12 @@ Vue.component('optiongroups-list', require('./components/optiongroups/listOption
 Vue.component('optiongroups-form', require('./components/optiongroups/formOptiongroups.vue'));
 
 
+/**
+*  HTML Parts
+*/
+Vue.component('part-tooltip', require('./parts/tooltip.vue'));
+Vue.component('part-modal', require('./parts/modal.vue'));
+Vue.component('part-panel', require('./parts/panel.vue'));
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 

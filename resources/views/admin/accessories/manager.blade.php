@@ -10,27 +10,8 @@
 
 @section('content')
 
-        @component('components.panel')
-          @slot('heading')
-            Accessories List
-          @endslot
-          @slot('body')
-            <accessories-list></accessories-list>
-          @endslot
-        @endcomponent
+    <accessories-list></accessories-list>
 
-
-    @component('components.modal')
-      @slot('id')
-        modal-form
-      @endslot
-      @slot('title')
-        Add new accessory
-      @endslot
-      @slot('body')
-        <accessories-form></accessories-form>
-      @endslot
-    @endcomponent
 @endsection
 
 @section('scripts')
